@@ -401,24 +401,24 @@ export class SnotifyService {
     return this.create(args);
   }
 
-	 mergeToast(toast, next, type?: SnotifyType) {
-    if (next.body) {
-      toast.body = next.body;
-    }
-    if (next.title) {
-      toast.title = next.title;
-    }
-    if (type) {
-      toast.config = mergeDeep(toast.config, this.config.global, this.config.toast[type], {type}, next.config);
-    } else {
-      toast.config = mergeDeep(toast.config, next.config);
-    }
-    if (next.html) {
-      toast.config.html = next.html;
-    }
-    this.emit();
-    this.emitter.emit('toastChanged', toast);
-  }
+	//  mergeToast(toast, next, type?: SnotifyType) {
+  //   if (next.body) {
+  //     toast.body = next.body;
+  //   }
+  //   if (next.title) {
+  //     toast.title = next.title;
+  //   }
+  //   if (type && this.config.toast) {
+  //     toast.config = mergeDeep(toast.config, this.config.global, this.config.toast[type], {type}, next.config);
+  //   } else {
+  //     toast.config = mergeDeep(toast.config, next.config);
+  //   }
+  //   if (next.html) {
+  //     toast.config.html = next.html;
+  //   }
+  //   this.emit();
+  //   this.emitter.emit('toastChanged', toast);
+  // }
 
 	  /**
    * Creates empty toast with html string inside
@@ -426,14 +426,14 @@ export class SnotifyService {
    * @param {SnotifyToastConfig} config
    * @returns {number}
    */
-   html(html: string, config?: SnotifyToastConfig): SnotifyToast {
-    return this.create({
-      title: null,
-      body: null,
-      config: {
-        ...config,
-        ...{html}
-      }
-    });
-  }
+  //  html(html: string, config?: SnotifyToastConfig): SnotifyToast {
+  //   return this.create({
+  //     title: undefined,
+  //     body: undefined,
+  //     config: {
+  //       ...config,
+  //       ...{html}
+  //     }
+  //   });
+  // }
 }

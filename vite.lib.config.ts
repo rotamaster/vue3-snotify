@@ -4,7 +4,7 @@ import path from 'path';
 export default defineConfig({
    build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/components/index.js'),
+      entry: path.resolve(__dirname, 'src/plugin/index.ts'),
       name: 'vue3-snotify',
       fileName: (format) => `vue3-snotify.${format}.js`
     },

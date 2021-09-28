@@ -63,6 +63,7 @@ import { defineComponent } from "vue";
 import SnotifyPrompt from './SnotifyPrompt.vue';
 import SnotifyButton from './SnotifyButton.vue';
 import { SnotifyStyle } from '../enums';
+import { SnotifyToast } from "../models/toast.model";
 
 export default defineComponent({
   components: {
@@ -74,7 +75,7 @@ export default defineComponent({
   data() {
     return {
       toast: this.toastData,
-      animationFrame: null,
+      animationFrame: 0,
       state: {
         paused: false,
         progress: 0,
@@ -87,15 +88,15 @@ export default defineComponent({
   computed: {
     toastTitle(): string {
       const title = this.toast.title;
-      if (title.length > toast.config.titleMaxLength) {
-        return title.slice(0, toast.config.titleMaxLength);
+      if (title.length > this.toast.config.titleMaxLength) {
+        return title.slice(0, this.toast.config.titleMaxLength);
       }
       return title;
     },
     toastBody(): string {
       const body = this.toast.body;
-      if (body.length > toast.config.bodyMaxLength) {
-        return body.slice(0, toast.config.bodyMaxLength);
+      if (body.length > this.toast.config.bodyMaxLength) {
+        return body.slice(0, this.toast.config.bodyMaxLength);
       }
       return body;
     }
@@ -185,11 +186,11 @@ export default defineComponent({
   },
 
   created() {
-    this.$snotify.emitter.on('toastChanged', toast => {
-      if (this.toast.id === toast.id) {
-        this.initToast();
-      }
-    });
+    // this.$snotify.emitter.on('toastChanged', (toast) => {
+    //   if (this.toast.id === toast.id) {
+    //     this.initToast();
+    //   }
+    // });
     this.$snotify.emitter.on('remove', id => {
       if (this.toast.id === id) {
         this.onRemove();

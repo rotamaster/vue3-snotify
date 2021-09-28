@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="click">click me</button>
+    <button @click="click()">click me</button>
   </div>
 </template>
 
@@ -10,7 +10,11 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   methods: {
     click() {
-      this.$snotify.error('hasdfas', 'asdfsadf');
+      console.log('hi');
+      console.log(this.$snotify);
+
+      const thing = this.$snotify.error('hasdfas', 'asdfsadf');
+      console.log(thing);
     }
   },
   setup () {

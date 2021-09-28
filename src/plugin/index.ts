@@ -12,17 +12,16 @@ export default {
 		app.component('vue-snotify', Snotify)
 	}
 }
-
-// export { SnotifyDefaults } from './interfaces/SnotifyDefaults.interface';
-// export {SnotifyToastConfig} from './interfaces/SnotifyToastConfig.interface';
-// export {SnotifyStyles} from './interfaces/SnotifyStyles.interface';
-// export {SnotifyNotifications} from './interfaces/SnotifyNotifications.interface';
-// export {SnotifyGlobalConfig} from './interfaces/SnotifyGlobalConfig.interface';
-// export {SnotifyButton} from './interfaces/SnotifyButton.interface';
-// export {SnotifyAnimate} from './interfaces/SnotifyAnimate.interface';
-// export {Snotify} from './interfaces/Snotify.interface';
-// export {SnotifyPosition} from './enums/SnotifyPosition.enum';
-// export {SnotifyStyle} from './enums/SnotifyStyle.enum';
-// export {SnotifyType} from './types/snotify.type';
-// export {SnotifyEvent} from './types/event.type';
-// export {SnotifyToast} from './models/toast.model';
+export type { SnotifyDefaults } from './interfaces/SnotifyDefaults.interface';
+export type {SnotifyToastConfig} from './interfaces/SnotifyToastConfig.interface';
+export type {SnotifyStyles} from './interfaces/SnotifyStyles.interface';
+export type {SnotifyNotifications} from './interfaces/SnotifyNotifications.interface';
+export type {SnotifyGlobalConfig} from './interfaces/SnotifyGlobalConfig.interface';
+export type {SnotifyButton} from './interfaces/SnotifyButton.interface';
+export type {SnotifyAnimate} from './interfaces/SnotifyAnimate.interface';
+export type {Snotify} from './interfaces/Snotify.interface';
+export type {SnotifyPosition} from './enums/SnotifyPosition.enum';
+export type {SnotifyStyle} from './enums/SnotifyStyle.enum';
+export type {SnotifyType} from './types/snotify.type';
+export type {SnotifyEvent} from './types/event.type';
+export type {SnotifyToast} from './models/toast.model';

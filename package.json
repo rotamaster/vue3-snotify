@@ -1,10 +1,11 @@
 {
   "name": "vue3-snotify",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "build-lib": "vue-tsc --noEmit && vite build -c vite.lib.config.ts",
+    "bl": "npm run build-lib",
     "serve": "vite preview"
   },
   "dependencies": {
@@ -21,13 +22,12 @@
   },
   "main": "./dist/vue3-snotify.umd.js",
   "module": "./dist/vue3-snotify.es.js",
-  "files": [
-    "dist/*"
-  ],
+  "files": ["dist"],
   "exports": {
     ".": {
       "import": "./dist/vue3-snotify.es.js",
       "require": "./dist/vue3-snotify.umd.js"
-    }
+    },
+    "./style" : "./dist/style.css"
   }
 }

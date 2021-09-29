@@ -1,6 +1,6 @@
 {
   "name": "vue3-snotify",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -29,5 +29,9 @@
       "require": "./dist/vue3-snotify.umd.js"
     },
     "./style" : "./dist/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liamrota/vue3-snotify"
   }
 }

@@ -240,7 +240,6 @@ export class SnotifyService {
    */
   @SetToastType
   error(args: any): SnotifyToast|undefined {
-    console.log('you tried to error');
     return this.create(args);
   }
 

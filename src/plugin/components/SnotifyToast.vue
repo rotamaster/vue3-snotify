@@ -63,7 +63,6 @@ import { defineComponent } from "vue";
 import SnotifyPrompt from './SnotifyPrompt.vue';
 import SnotifyButton from './SnotifyButton.vue';
 import { SnotifyStyle } from '../enums';
-import { SnotifyToast } from "../models/toast.model";
 
 export default defineComponent({
   components: {
@@ -100,7 +99,15 @@ export default defineComponent({
       }
       return body;
     }
-
+  },
+  watch: {
+    toastData: {
+      handler(toastData) {
+        this.toast = toastData;
+        this.initToast();
+      },
+      immediate: false
+    }
   },
   methods: {
     /**
@@ -140,12 +147,7 @@ export default defineComponent({
       this.initToast();
       this.toast.eventEmitter.emit('shown');
     },
-    /**
-     * Start progress bar
-     * @param startTime {number}
-     * @default 0
-     */
-    startTimeout(startTime = 0) {
+    startTimeout(startTime: number = 0) {
       const start = performance.now();
       const calculate = () => {
         this.animationFrame = requestAnimationFrame(timestamp => {
@@ -184,13 +186,7 @@ export default defineComponent({
       }, this.toast.config.animation.time / 2);
     }
   },
-
   created() {
-    // this.$snotify.emitter.on('toastChanged', (toast) => {
-    //   if (this.toast.id === toast.id) {
-    //     this.initToast();
-    //   }
-    // });
     this.$snotify.emitter.on('remove', id => {
       if (this.toast.id === id) {
         this.onRemove();

@@ -1,6 +1,6 @@
 {
   "name": "vue3-snotify",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -9,6 +9,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@babel/types": "^7.24.6",
     "mitt": "3.0.0",
     "vue": "^3.2.13"
   },
@@ -22,16 +23,18 @@
   },
   "main": "./dist/vue3-snotify.umd.js",
   "module": "./dist/vue3-snotify.es.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": "./dist/vue3-snotify.es.js",
       "require": "./dist/vue3-snotify.umd.js"
     },
-    "./style" : "./dist/style.css"
+    "./style": "./dist/style.css"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/liamrota/vue3-snotify"
+    "url": "https://github.com/rotamaster/vue3-snotify"
   }
 }

@@ -18,7 +18,7 @@
     "sass": "^1.42.1",
     "typescript": "^4.4.3",
     "vite": "^2.5.10",
-    "vue-tsc": "^0.3.0"
+    "vue-tsc": "^2.0.19"
   },
   "main": "./dist/vue3-snotify.umd.js",
   "module": "./dist/vue3-snotify.es.js",

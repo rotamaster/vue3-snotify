@@ -26,5 +26,5 @@ The api should be the same as [vue-snotify](https://www.npmjs.com/package/vue-sn
 
 ## Todos:
 - Restore html functionality on SnotifyService
-- Restore async functionality on SnotifyService
 - Style options
+- Unit tests

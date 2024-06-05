@@ -5,7 +5,8 @@ import { SnotifyToastConfig, Snotify, SnotifyDefaults } from "./interfaces";
 import { mergeDeep, uuid } from "./utils";
 import { SetToastType } from "./decorators/set-toast-type.decorator";
 import { TransformArgument } from "./decorators/transform-argument.decorator";
-import {SnotifyType} from './types'
+import { SnotifyType } from "./types";
+import { SnotifyStyle } from "./enums";
 
 export class SnotifyService {
   readonly emitter = mitt();
@@ -38,6 +39,18 @@ export class SnotifyService {
     } else {
       this.notifications.push(toast);
     }
+    this.emit();
+  }
+
+  /**
+   * update SnotifyToast in notifications array
+   */
+  update(toast: SnotifyToast) {
+    const index = this.notifications.findIndex((t) => t.id === toast.id);
+    if (index === -1) {
+      return;
+    }
+    this.notifications[index] = toast;
     this.emit();
   }
 
@@ -401,39 +414,93 @@ export class SnotifyService {
     return this.create(args);
   }
 
-	//  mergeToast(toast, next, type?: SnotifyType) {
-  //   if (next.body) {
-  //     toast.body = next.body;
-  //   }
-  //   if (next.title) {
-  //     toast.title = next.title;
-  //   }
-  //   if (type && this.config.toast) {
-  //     toast.config = mergeDeep(toast.config, this.config.global, this.config.toast[type], {type}, next.config);
-  //   } else {
-  //     toast.config = mergeDeep(toast.config, next.config);
-  //   }
-  //   if (next.html) {
-  //     toast.config.html = next.html;
-  //   }
-  //   this.emit();
-  //   this.emitter.emit('toastChanged', toast);
-  // }
-
-	  /**
-   * Creates empty toast with html string inside
-   * @param {string} html
-   * @param {SnotifyToastConfig} config
+  /**
+   * Creates async toast with Info style. Pass action, and resolve or reject it.
+   * @param body {String}
+   * @param action {() => Promise<Snotify>}
    * @returns {number}
    */
-  //  html(html: string, config?: SnotifyToastConfig): SnotifyToast {
-  //   return this.create({
-  //     title: undefined,
-  //     body: undefined,
-  //     config: {
-  //       ...config,
-  //       ...{html}
-  //     }
-  //   });
-  // }
+    async(body: string, action: () => Promise<Snotify>): SnotifyToast;
+  /**
+   * Creates async toast with Info style. Pass action, and resolve or reject it.
+   * @param body {String}
+   * @param title {String}
+   * @param action {() => Promise<Snotify>}
+   * @returns {number}
+   */
+    async(body: string, title: string, action: () => Promise<Snotify>): SnotifyToast;
+  /**
+   * Creates async toast with Info style. Pass action, and resolve or reject it.
+   * @param body {String}
+   * @param action {() => Promise<Snotify>}
+   * @param [config] {SnotifyToastConfig}
+   * @returns {number}
+   */
+    async(body: string, action: () => Promise<Snotify>, config: SnotifyToastConfig): SnotifyToast;
+  /**
+   * Creates async toast with Info style. Pass action, and resolve or reject it.
+   * @param body {String}
+   * @param title {String}
+   * @param action {() => Promise<Snotify>}
+   * @param [config] {SnotifyToastConfig}
+   * @returns {number}
+   */
+    async(body: string, title: string, action: () => Promise<Snotify>, config: SnotifyToastConfig): SnotifyToast;
+  /**
+   * Transform toast arguments into {Snotify} object
+   */
+  @TransformArgument
+  /**
+   * Determines current toast type and collects default configuration
+   */
+  @SetToastType
+  async(args: any): SnotifyToast | undefined {
+    let async = args.action;
+
+    const toast: SnotifyToast | undefined = this.create({
+      title: args.title,
+      body: args.body,
+      config: {
+        ...args.config,
+        timeout: 0,
+      },
+      html: args.html,
+    });
+
+    if (!toast) {
+      return;
+    }
+
+    toast.on('mounted',
+      () => {
+      async()
+        .then((next: Snotify) => this.mergeToast(toast, next, SnotifyStyle.success))
+        .catch((error: Snotify) => this.mergeToast(toast, error, SnotifyStyle.error));
+      }
+    );
+
+    return toast;
+  }
+
+  mergeToast(toast: SnotifyToast, next: Snotify, type: SnotifyType) {
+    const updatedToast = new SnotifyToast(
+      toast.id,
+      next.title || toast.title,
+      next.body || toast.body,
+      {
+        ...mergeDeep(
+          this.config.global,
+          toast.config,
+          this.config.toast?.[type] || SnotifyStyle.info,
+          {type},
+          next.config
+        ),
+        timeout: next.config?.timeout || this.config.toast?.timeout,
+      }
+    );
+    if (next.html) {
+      updatedToast.config.html = next.html;
+    }
+    this.update(updatedToast);
+  }
 }

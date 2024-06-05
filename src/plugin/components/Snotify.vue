@@ -11,12 +11,6 @@
       :class="'snotify-' + index"
       :key="index"
     >
-      <!-- <toast
-        v-for="toast in notifications[index].slice(blockSize_a, blockSize_b)"
-        :toastData="toast"
-        :key="toast.id"
-        @stateChanged="stateChanged"
-      /> -->
       <toast
         v-for="toast in getNotificationsForPos(index)"
         :toastData="toast"
@@ -27,12 +21,12 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { defineComponent } from "vue";
 import { SnotifyToast } from "../models/toast.model";
 import { SnotifyNotifications } from "../interfaces";
 import { SnotifyPosition } from "../enums";
-import { SnotifyEvent } from "../types";
 import Toast from "./SnotifyToast.vue";
 
 export default defineComponent({

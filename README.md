@@ -6,11 +6,10 @@ The following `vue-snotify` features are missing from this fork:
 - Dark and simple themes
 
 ## Installation
-npm i --save vue3-snotify
+- ```npm i vue3-snotify```
+- ```yarn add vue3-snotify```
 
 ## Usage
-
-### **With the Options API**
 
 In `main.ts`:
 
@@ -22,6 +21,9 @@ import 'vue3-snotify/style';
 const app = createApp(App);
 
 app.use(snotify);
+
+app.provide('snotify', app.config.globalProperties.$snotify);
+
 app.mount('#app');
 ```
 
@@ -34,7 +36,7 @@ In `App.vue`:
 </div>
 ```
 
-Usage:
+#### **With the Options API:**
 
 ```vue
 <script>
@@ -54,25 +56,7 @@ methods: {
 </template>
 ```
 
-### **With the Composition API**
-
-In `main.ts`:
-
-```ts
-...
-import Snotify from 'vue3-snotify';
-import 'vue3-snotify/style';
-
-const app = createApp(App);
-
-app.use(Snotify);
-
-app.provide('snotify', app.config.globalProperties.$snotify);
-
-app.mount('#app');
-```
-
-Usage:
+#### **With the Composition API:**
 
 ```vue
 <script setup>
@@ -88,7 +72,7 @@ const showToast = snotify.success('Hello, world!');
 </template>
 ```
 
-### **With Nuxt 3**
+## With Nuxt 3
 
 In `plugins/snotify.ts`:
 

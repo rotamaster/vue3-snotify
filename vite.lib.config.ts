@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
 import createVuePlugin from "@vitejs/plugin-vue";
 import path from "path";
+import dts from 'vite-plugin-dts'
+
 export default defineConfig({
   build: {
     lib: {
@@ -21,7 +23,7 @@ export default defineConfig({
       },
     },
   },
-  plugins: [createVuePlugin()],
+  plugins: [createVuePlugin(), dts({ rollupTypes: true })],
   server: {
     port: 8080,
     fs: {

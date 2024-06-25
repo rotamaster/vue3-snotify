@@ -1,6 +1,6 @@
 {
   "name": "vue3-snotify",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -19,6 +19,7 @@
     "sass": "^1.77.4",
     "typescript": "^5.4.5",
     "vite": "^5.0.0",
+    "vite-plugin-dts": "^3.9.1",
     "vue-tsc": "^2.0.22"
   },
   "main": "./dist/vue3-snotify.umd.js",

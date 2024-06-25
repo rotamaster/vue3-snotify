@@ -25,3 +25,4 @@ export type {SnotifyStyle} from './enums/SnotifyStyle.enum';
 export type {SnotifyType} from './types/snotify.type';
 export type {SnotifyEvent} from './types/event.type';
 export type {SnotifyToast} from './models/toast.model';
+export type { SnotifyService };

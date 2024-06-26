@@ -22,17 +22,19 @@
     "vite-plugin-dts": "^3.9.1",
     "vue-tsc": "^2.0.22"
   },
-  "main": "./dist/vue3-snotify.umd.js",
-  "module": "./dist/vue3-snotify.es.js",
+  "main": "./dist/index.es.js",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "import": "./dist/vue3-snotify.es.js",
-      "require": "./dist/vue3-snotify.umd.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js"
     },
-    "./style": "./dist/style.css"
+    "./style": "./dist/index.css",
+    "./theme/material": "./dist/material.css",
+    "./theme/simple": "./dist/simple.css",
+    "./theme/dark": "./dist/dark.css"
   },
   "repository": {
     "type": "git",

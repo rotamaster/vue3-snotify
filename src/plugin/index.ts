@@ -2,7 +2,11 @@ import { App } from 'vue';
 import Snotify from './components/Snotify.vue';
 import { SnotifyService } from './SnotifyService';
 import {SnotifyDefaults} from './interfaces';
-import './styles/material.scss';
+
+// Base styles
+import './styles/_shared/animations.scss';
+import './styles/_shared/icons.scss';
+import './styles/_shared/snotify.scss';
 
 export default {
 	install: (app: App, options: SnotifyDefaults = {}) => {

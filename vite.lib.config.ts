@@ -5,18 +5,21 @@ import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   build: {
+    cssCodeSplit: true,
     lib: {
-      entry: path.resolve(__dirname, "src/plugin/index.ts"),
+      entry: [
+        path.resolve(__dirname, "src/plugin/index.ts"),
+        path.resolve(__dirname, "src/plugin/themes/material.ts"),
+        path.resolve(__dirname, "src/plugin/themes/simple.ts"),
+        path.resolve(__dirname, "src/plugin/themes/dark.ts"),
+      ],
       name: "vue3-snotify",
-      fileName: (format) => `vue3-snotify.${format}.js`,
+      fileName: (format, name) => `${name}.${format}.js`,
+      formats: ['es'],
     },
     rollupOptions: {
-      // make sure to externalize deps that shouldn't be bundled
-      // into your library
       external: ["vue"],
       output: {
-        // Provide global variables to use in the UMD build
-        // for externalized deps
         globals: {
           vue: "Vue",
         },

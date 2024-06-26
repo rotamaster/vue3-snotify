@@ -128,5 +128,4 @@ const showToast = snotify.success('Hello, world!');
 
 ## To-do:
 - Restore HTML functionality on SnotifyService
-- Export Dark and Simple themes
 - Unit tests

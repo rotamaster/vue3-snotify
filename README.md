@@ -3,7 +3,6 @@ Based on [vue-snotify](https://github.com/artemsky/vue-snotify) for Vue 2.
 
 The following `vue-snotify` features are missing from this fork:
 - Custom HTML notifications
-- Dark and simple themes
 
 ## Installation
 - ```npm i vue3-snotify```
@@ -16,7 +15,12 @@ In `main.ts`:
 ```ts
 ...
 import snotify from 'vue3-snotify';
-import 'vue3-snotify/style';
+import 'vue3-snotify/style'; // Base styles
+
+import 'vue3-snotify/theme/material';
+// import 'vue3-snotify/theme/simple';
+// import 'vue3-snotify/theme/dark';
+// import '../someCustomTheme.css';
 
 const app = createApp(App);
 
@@ -43,9 +47,9 @@ In `App.vue`:
 ...
 
 methods: {
-    showToast() {
-        this.$snotify.error('Hello, world!');
-    },
+  showToast() {
+    this.$snotify.error('Hello, world!');
+  },
 },
 
 ...
@@ -60,8 +64,6 @@ methods: {
 
 ```vue
 <script setup>
-import type { SnotifyService } from 'vue3-snotify';
-
 const snotify = inject('snotify');
 
 const showToast = snotify.success('Hello, world!');
@@ -79,7 +81,12 @@ In `plugins/snotify.ts`:
 ```ts
 import { defineNuxtPlugin } from '#app';
 import Snotify, { type SnotifyService } from 'vue3-snotify';
-import 'vue3-snotify/style';
+import 'vue3-snotify/style'; // Base styles
+
+import 'vue3-snotify/theme/material';
+// import 'vue3-snotify/theme/simple';
+// import 'vue3-snotify/theme/dark';
+// import '../someCustomTheme.css';
 
 declare module '#app' {
   interface NuxtApp {
